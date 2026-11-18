@@ -28,7 +28,6 @@ public enum NetLab {
 
     @MainActor
     public static func start(_ configuration: Configuration = Configuration()) {
-        #if DEBUG
         let engine = NetLabEngine.shared
         engine.configure(storage: configuration.storage, redaction: configuration.redaction)
         engine.startIntercepting()
@@ -37,42 +36,29 @@ public enum NetLab {
             showsButton: configuration.entry.contains(.floatingButton),
             respondsToShake: configuration.entry.contains(.shake)
         )
-        #endif
     }
 
     @MainActor
     public static func present() {
-        #if DEBUG
         NetLabPresenter.shared.present()
-        #endif
     }
 
     @MainActor
     public static func dismiss() {
-        #if DEBUG
         NetLabPresenter.shared.dismiss()
-        #endif
     }
 
     @MainActor
     public static func stop() {
-        #if DEBUG
         NetLabEngine.shared.stopIntercepting()
         NetLabPresenter.shared.uninstall()
-        #endif
     }
 
     public static func register(_ item: NetLabSwitch) {
-        #if DEBUG
         NetLabEngine.shared.register(item)
-        #endif
     }
 
     public static func value(of switchName: String) -> String? {
-        #if DEBUG
-        return NetLabEngine.shared.value(of: switchName)
-        #else
-        return nil
-        #endif
+        NetLabEngine.shared.value(of: switchName)
     }
 }

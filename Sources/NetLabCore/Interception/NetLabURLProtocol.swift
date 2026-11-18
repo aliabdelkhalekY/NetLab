@@ -1,4 +1,3 @@
-#if DEBUG
 import Foundation
 
 final class NetLabURLProtocol: URLProtocol, URLSessionDataDelegate {
@@ -368,4 +367,3 @@ final class ChallengeForwarder: NSObject, URLAuthenticationChallengeSender {
     func performDefaultHandling(for challenge: URLAuthenticationChallenge) { finish(.performDefaultHandling, nil) }
     func rejectProtectionSpaceAndContinue(with challenge: URLAuthenticationChallenge) { finish(.rejectProtectionSpace, nil) }
 }
-#endif
